@@ -1,0 +1,436 @@
+#include <stdio.h> // declaration ( #-preprocessor directive) , standard i/p o/p functions 
+int main() //main is basically  functions and its is entry point and exit point to work code. 
+{
+    int a=5, b=8;
+    char ch='P';
+    
+    printf("Hello, \n cranes varsity \n This is Revanth a=%d, b=%d, ch=%c \n", a, b, ch);
+    a=5;
+    ch='R';
+    printf(" a=%d,ch=%c\n",a,ch);
+    float f=9.2;
+    double d= 1.9876;
+    printf(" f=%f,d=%lf \n",f,d);
+    return 0;
+}
+
+
+declaration - prototype rule set(return type and arguments)
+definition - standard c library - libc.so 
+call - programmer calling the function 
+
+=> Modularity - Modularity is used to  breaking the large program into smaller, independent modules or sub-programs.
+
+=> preprocessor - declarations of standard input output. - Preprocessor is a program that is invoke by the complier, it  preprocess the 
+                                                           source code and 
+                                                          -> include all the hearder file which starts with hash (# - preprocessor directive )
+                                                          -> remove the commented lines   
+
+=> compiler- A compiler is a software tool that translates source code written in a any programming language into machine code that can 
+             be executed directly by a computers CPU. It performs several tasks, including error detection and prevention, flow control,
+             syntax analysis,type checking, and optimization.
+
+
+=> tokens- Tokens are the smallest individual units in a c program that the compiler recognizes and processes.
+           It is fundamental building blocks that make up a c program.
+
+      7 tokens:
+         1. identifier- Identifiers are names given to various programme elements, such As variables, functions, arrays, and structures.
+                        -> use 0-9, a-z, A-Z, it starts with letter or underscore(_),.
+         2. keywords- keywords are predefined or reserved words that have special meanings to the compiler.
+                      -> it does not use in any variable. 
+                      -> it consist 32 keywords
+         3. constants 
+         4. strings
+         5. special symbols
+         6. operators 
+         7. Comments
+
+=> Datatype - It is to mention the type, size, memory to be allocated for a variable.
+              1. primitive - predefined (int- 2 or 4 bytes, char- 1 byte, float- 4 bytes, double- 8 bytes)- 
+              2. non- primitive - user-defined (array, string, structure, unions, typedef, enum)
+
+=> Modifier - Is used to modify the size of the datatype. It applicable for datatype of primitive. 
+              -> These are 4 type short, long, signed, unsigned.
+                  short- 2 bytes -int (%hd)
+              	  long- 8 bytes- int, double(%ld,%Lf or %g) (note: l-long int, L&g- long double)
+              	  signed - int, char integral. (+ & - values)
+              	  unsigned -int, char integral. ( only + values)
+
+=> size of()- It is an operator used to find the size of the data type or a variables. output interms of bytes (%u).
+               Size cannot be negative.
+            
+** Note: Size of the variable depeneds on the size of the datatype, size of the datatype depeneds on the machine.
+
+=> fmod()- fmod is a functions, that provided by the <math.h> library, it is used to compute the floating-point remainder of the 
+           division operation.
+
+=> Variable- Variable is name given to a storage location that holds data or a value.
+
+
+=> Operator - It is Symbol that perform certain mathematical or logical manipulations(operations).
+              1. Unary
+      	      2. Binary
+              3. Ternary
+
+=> Unary operator- it consist of one operand. - increment(++)
+                                                decrement(--)
+                                             	size of()
+					     	address of the argument(&)
+                                             	unary minus (-)
+                                              	unary plus (+)
+                                             	NOT (!)
+                                             	compliment (~).
+
+=> Binary operator- it consist of two operand.- 1. Arithmetic Operators (addition (+), subtraction (-), multiplication (*), division (/),
+                                                   and modules (%) )
+                                                
+                                                2. Relational Operators ( less than (<), greater than (>), less than or equal to (<=), 
+                                                   greater than or equal to (>=), equal to equal to (==), and not equal to (!=))
+                                                
+                                                3. Logical Operators (AND (&&), OR(||), and NOT (!))
+                                             
+                                                4. Bitwise Operators (AND (&), OR (|), XOR (^), NOT (~), left shift (<<), and right shift (>>)). 
+                                                   (%x - hexadecimal values)
+                                                
+                                                5. Assignment Operators - assignment operator "assigns" a value to a named variable. 
+                                                   (=, +=, -=, *=, /=, %=, &=, |=, and ^=.)
+
+=> Bitwise Shifting Operator- Bitwise shift operator is used to shift the binary bits either in the left direction or right 
+                              direction according to the program's requirement.
+                           
+                           1. Left Shifting (<<)
+                           2. Right Shifting (>>)
+
+                   **         1. in left shift of a positive number no matter we truncate a 0 or 1 we always append a 0
+                              2. in left shift of a negative number no matter we truncate a 0 or 1 we always append a 0
+
+                              1. in right shift of a positive number no matter we truncate a 0 or 1 we always append a 0
+                              2. in right shift of a negative number if we are truncate a 0 or a 1 we will always append 1
+
+=> Ternary Operator - it consist of three operand. The ternary operator (?:) in C is a type of conditional operator. exp1 ? exp2 : exp3
+                                                                             exp1 − A Boolean expression evaluating to true or false
+                                                                             exp2 − Returned by the ? operator when exp1 is true 
+                                                                             exp3 − Returned by the ? operator when exp1 is false
+
+=> Type Converstions or Type Casting- Converting one type of data into another type of data.
+                                      1. Implicit Type converstions- Compiler convert the one type of data to another type.
+                                      2. Explicit Type converstions- programmer explicit convert the type of data that user required.
+ 
+=> return type in c- return type in c refers to the data type of the value that a function returns.
+
+=> precedence- it detemines the order in which operators are evaluated in an expression.
+
+=> associativity- it define the order in which operators of the same precedence are evaluated.
+
+=> By using this formules To find the range of data type : -> -2^(n-1) to 2^(n-1)-1 - signed data type
+                                                           ->  0 to (2^n)-1 - unsigned data type
+
+=> instructions - instrctions are give to a compiler by a program to perform certain tasks or actions.
+
+type - 1. type decleration instructions- declerations(setting a rule) - to declar the type of variables used in a c program.
+       2. i/p o/p instructions- to perform the functions of supplying input data to a program and obtaining the output results From it.
+       3. arithmetic instructions- To perform arithmetic operations b/w constants and variables.
+       4. control instructions- to control the sequence of executions of various program statements.
+       
+=> control flow- programmers to control the flow of execution based on certain conditions and logic.
+
+type- 1. sequential control flow - when the statements in a program are executed one after the other in the order in which they are written.
+      2. selection or decison control flow - It allows the program to choose which statement to execute next based on a condition.
+      3. iteration or loop control flow - It allows the program to repeact a block of code until a condition is met.
+      
+      
+=> fgurge - it helps to flush the buffer.
+
+=> function- function is a block of statement that preforms a partical task or specific operation.
+
+=> parts of functions- 1. declaration - the function's name, return type, and parameters (prototype)
+                       2. definition -  the body of the function (code to be executed)
+                       3. call -  programmer can call the function.
+               
+=> Classification of functions- 1. No argument no return type.
+                                2. No argument with return type.
+                                3. with argument with return type.
+                                4. With argument without return type. 
+                    
+=> call by value - passing the value From actual argument which is copied inside formal argument any modifications made to the formal 
+                   argument will not reflect on the actual arguments because these variables allocates different memory and they lie under 
+                   two different functions.
+
+=> call by reference- passing the address From actual argument to the pointer in the formal argument any modifications done to pointer 
+                      variable will be reflected on the actual argument. so any changes made to the pointer is directly reflected to 
+                      actual argument.
+
+=> overhead - function overhead is a process of calling the functions, control transfers to function defination than stack frame is created 
+              then in stack frame did the operations after completions of operation then control returns back to the function. 
+
+=> Explain the stages of compilation? - when the compilations starts, compiler looks into the preprocessor,
+   Preprocessor is a program that is invoke by the complier, it  preprocess  the source code and 
+                                                          -> include all the hearder file which starts with hash (# - preprocessor directive )
+                                                          -> remove the commented lines   
+   and Preprocessor generates the transistion unit and it pass that output to the complier and complier generaters the assembly code, assembly 
+   code pass to the assembler, assembler generaters the object code that generated object code pass to link editor. Link editor can links all 
+   the definations and user defined function and it generates exceutable code ( the name of exceutable code is ./a. out).
+
+**note: for smaller task we use macros.
+        for larger task we use functions.
+
+=> categories of preprocessor directive: 1. flie inclusion - 
+                                         2. macro substitution
+                                         3. conditional inclusion- The preprocessor supports conditional compilation of parts of source file. 
+                                                                   This behavior is controlled by #if, #else, #elif, #ifdef, #ifndef, 
+                                                                   #elifdef, #elifndef, and #endif directives.
+                                         4. miscellaneous directives
+                                      
+=> macro substitution- macro is a preprocessor directive. The operation to replace a macro name with its associated macro body is called 
+                       macro substitutions. macro are two types- 1. Argumented - Free to pass 'n' number of arguments.
+                                                                 2. Non - Argumented - we pass olny static values. 
+                          
+=> Scope - scope indicates the life time of a partical variable or a functions or a statement.
+           1. local scope  or block scope- 
+           2. Global scope-
+        
+=> Tentative function- either one will be take the value.
+
+=> memory layout- To represent the typical memory.
+                  1. Text segment or code segment- hold the exceutable instructions of the program.
+                  2. Data segment- 1. Unintialize - Reserves space for Unintialized global and static variable and also intialized with zero.
+                                   2. intialized- stores global and static variable with insialized values.
+                                
+                  3. Heap segment- Dynamic memory allocation during program exection.
+                  4. stack segment- to store the local variables and it is last in frist out(lifo).
+               
+=> storage class in c programming - storage classes specify the scope and life time of variables.
+                                    1. Automatic- it helps to create a temparary variable to keep the data for limited time.
+                                    2. static- either globel or local variable, they are alive throughout the program.
+                          
+=> storage class specifiers - 1. auto- auto can apply only local variable.
+                              2. register- register values are stored in cpu.
+                              3. static 
+                              4. extern 
+                           
+=> Linkage- 1. Internal linkage- It is the process of local variable with in the file can be acressible and outside the file to achive 
+                                 internal linkage we can apply static to our global variable.
+            2. External linkage- The process of accessing a global variable From one file to another file using exten keyword.
+            3. None     linkage- It is a process where we do not use internal and external linages. A local variable within the block 
+                                 which can only be accessible with in the block.
+         
+=> Array- Array is a collection elements of similar kind of datatype.
+          -> It is used to store multiple value in a single variable.
+          -> Syntax- datatype array_name[size].
+          -> []- it is called array subscrpit operator.
+          -> It can store the primitive type of data such As int, char, double, float, etc. 
+          -> It also has the capability to store the collection of derived data types, such As pointers, structure, etc.
+     
+=> Advantages- 1. Memory allocated to the array is continous.
+               2. Array elements can be accessed using their index value, it can start '0 to N'.
+               3. Fixed array size.
+               4. Static memory allocation.
+
+=> 2D Array- -> It consist More then two rows. 
+             -> Matrix- combination of row and columns.
+             -> Syntax- datatype matrix_name[row_size][col_size]
+
+=> Strings- String is a collecton of charcater terminated by a null ('\0'), represented by " ".
+            -> We do not have any datatype to store the strings, so we can take help of charcater.
+            -> formate spcifier is %s.
+            -> Instead of scan we use 'gets'.
+            -> fgets- without any formate spcifier we can read the given string. Syntax- fgets(name of string, size,stdin).
+            -> continous memory alloction.
+ 
+=> pre-define functions- 1. strlen- It is used to find the length of the string.
+                         2. strcpy- It is used to copy the two strings.
+                         3. strcmp- It is used to compare the two strings.
+                         4. strcat- It is used to adding  the two strings.
+
+        
+=> Pointers- The pointer is a variable which holds the address of another variable.
+
+**Note: size of the pointer can be 4 or 8 bytes depending on the machine. No matter the pointer is an int, char, float or double 
+        the size is always 4  or 8 bytes hence pointer size do not depend on the datatype.
+
+=> Pointer Arithmetic: Pointer Arithmetic is the set of valid arithmetic operations that can be performed on pointers. 
+               
+      -> Valid Operations: 1. increment
+                           2. decrement
+                           3. add integer to a pointer
+                           4. sub integer From a pointer
+                           5. sub two pointers
+                          
+      -> Invalid Operations: 1. adding two pointer
+                             2. multipling an integer with pointer.
+                             3. multipling two pointers
+                             4. dividing an interger with pointer
+                             5. dividing two pointer
+                                    
+=> Wild pointer- wild pointer is a pointer that is uninitialised. hence performing any dereferncing opertion or pointer arithmetic 
+                 may lead to undefined behavior and dangerous to use.       
+
+**note: gcc res.c -Wall - HIDE WARRINGS SHOW
+
+=> NULL- Null is macro whose body is zero.
+
+=> void pointer- it is a generic pointer that can point to any datatype. 
+       
+=> dangling pointer- It is a pointer that points to the frees or an unused memory location. 
+     
+=> qualifer- It can be used to change a data type's behavior in the C programming language.
+             1. const- If any variable is declared As a const in the code and is initialized with a value, its value cannot be furtherly 
+                       modified in any part of the code. It results in a compile-time error if the programmer attempts to modify the 
+                       value of such variables, which are declared const.
+             
+             2. Volatile- The volatile is used to indicate to the compiler that a variable's value may change unexpectedly.
+          
+=> Pointer and constant-
+   	   1. pointer to a constant- syntax: datatype const *pointer_name;
+   	   2. constant pointer- syntax: datatype *const pointer_name;
+   	   3. pointer to a constant and constant pointer- syntax: const datatype *const pointer_name
+                    
+=> pointer to an array- It takes 'n' number of col and print the elements accordingly and the base address stores the address of 0th row,
+                        first  element.
+
+=> array of pointer- An array of pointers is an array that consists of variables of pointer type, which means that the variable is a 
+                     pointer addressing to some other element and the base address stores the ptr[0].
+       
+=> Dynamic memory allocation(DMA)- memory gets allocated dynamically, memory is allocated in heap segment.
+
+=> Functions for DMA- 1. To dynamically allocate memory:1. malloc- malloc(size)- malloc() call internally memset() -> it consist 4 bytes
+                                                        2. calloc- calloc(no.of block, size)- calloc() call internally -> malloc() calls 
+                                                            -> memset() -> it consist 8 bytes       
+                      2. To reallocate or to resize the memory- syn: realloc(pointer_name,new_size)
+                      3. To free or relase the memory- syn: free(pointer_name)
+                      4. exit(integer value)- It is used to exit or terminate From the program, so that it does not execute any other statements.
+                
+       
+=> Commandline arguments- like any other functions main can also take argument hence when we want to take input through command line 
+                          then we can pass argument to our main function.
+
+                          -> int main(int argc, char *argv[]);
+                                  -> argc- Argument counter: it count the number of arguments given on the command line.
+	         		  -> argv- Array of character pointers that takes stores the command line input.
+
+=> Structure- It is a user-defind datatype.
+              -> collection of elements of similar and dissmilar data member.
+              -> structure is declard with the keyword called struct.
+   
+              -> syntax:  struct tag_name
+       		       	  {      
+        		    datamembers;
+      	       	          };// structure declaration
+
+	      -> structure template: struct employee
+                    		     {
+                      		       int id;
+                                       char name[10];
+                                       float sal;
+                                     };// structure template
+                                  
+              -> n datamembers inside the structure.
+              -> structure template will not allocate any memory arther memory to the structure is allocated when variable is declared to 
+                 the structure.
+              -> again we can have n variable declared to the same estructure template.
+              -> Applications:
+			1. Embedded Systems: Structures are used to model hardware components. For example, a microcontroller register 
+			                     can be represented As a structure.
+			2. Graphics: Representing complex shapes, points, and colors.
+			3. Networking: Storing packet information (headers, payloads, etc.).
+			4. Game Development: Managing game entities (players, enemies, items).
+  
+=> Union- derived datatype. Unions allow storing different data types in the same memory location, providing an efficient way to use memory.
+          -> syntax:union tag_name
+       		    {      
+        		datamembers;
+      	       	    };// union declaration
+      	       	       	          
+	  -> Applications:
+		1. Embedded Systems: Memory-mapped hardware registers, where different parts of the register can be accessed using 
+		                     different data types.
+		2. Network Protocols: Parsing packet data that can vary in type.
+		3. Interfacing with Hardware: Accessing different interpretations of data.
+
+=> typedef- It will help to give an alternative name or a shorter or simpiler or an alias to the existing datatype.                    
+            -> syntax- typedef existing_name new_name;
+	    -> Applications:
+		1. Code Readability: Simplifying complex type definitions.
+		2. Portability: Making it easier to change data types in large codebases.
+		3. Consistency: Ensuring consistent use of types across a project.
+  
+=> enum- Enums define a set of named integer constants, which can make code more readable and maintainable.
+ 	 -> Applications:
+		1. State Machines: Representing states in a state machine.
+		2. Configuration Settings: Defining different modes or configurations.
+		3. Error Codes: Providing meaningful names to error codes.
+		4. Flags and Options: Defining bit flags and options.
+	
+=> File handling- -> file: it is a permanent storage of data
+                  -> file handling: it is a process of dealing with file and its data    
+                    
+                  -> file handling is classified into two type
+			1. low level file handling-is handled by the system calls(linux)
+			2. high level file handling - is handled by predefined function
+
+                  -> operation on file
+			1. create
+			2. open
+			3. read
+			4. write
+			5. close
+       
+                  -> FILE  *fp=fopen("file_name","mode");
+                       . FILE: it is a predefined structure which is declared in the header file stdio.h
+                       . *fp: It contain address of a variable whose datatype is FILE. It is point directly to the file.
+                       . fopen(): It is a functions to use for opening a file.
+                                  -> this functions is defined in header file stdio.h
+                                  -> the arguments to pass in fopen(arg1,ar2): 1. file_name
+                                                                               2. mode.
+                                                          
+                       . Mode: There are six modes: 1. r  4. r+ 
+                                                    2. w  5. w+
+                                                    3. a  6. a+
+                               -> 1.'r' - open the file in a read mode.
+					-> if the file is existing then it returns the file in a read mode
+              				-> if the file is  not existing then it returns a NULL.
+                                  2.'w'-opens the file for write mode.
+					-> if the file existing then it erases the previous data that is existing in the file and 
+					   ready to write the new data into the file
+		 			-> if the file is not existing it create a new file.
+ 				  3.'a'-opens the in the append mode
+					-> if the file existing then it appends the data to the file
+					-> if the file is not existing it create a new file.
+				  4.'r+' - open the file in a read and write .
+					-> if the file is existing then it returns the file in a read write mode
+					-> if the file is  not existing then it returns a NULL.
+
+				  5.'w+'-opens the file for write  and read mode.
+					-> if the file existing then it erases the previous data that is existing in the file and 
+					   ready to write the new data into the file
+					-> if the file is not existing it create a new file.
+			 	  6.'a+'-opens the file in the append  and read 
+					-> if the file existing then it appends the data to the file & reads
+					-> if the file is not existing it create a new file
+					
+		       . fclose(): It is used to close the file,by pass a argument fp(file pointer). ex.: fclose(fp);		        
+       
+       
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         

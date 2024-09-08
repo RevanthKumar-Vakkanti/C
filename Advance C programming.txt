@@ -1,0 +1,1558 @@
+ 
+                         /* -------------------------------- * POINTERS * -------------------*/
+8/07/2024
+
+1.  how to work by using pointer.
+
+#include<stdio.h>
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  printf("a= %d\n",a);//10
+  printf("ptr= %p\n",ptr);//100
+  printf("&a= %p\n",&a);//100
+  printf("*ptr= %d\n",*ptr);//10
+  printf("*&a= %d\n", *&a);//10
+  printf("&ptr= %p\n",&ptr);//100
+ // printf("*a= %d\n",*a); // INVALID 
+  return 0;
+}
+
+2 pre-define datatype.
+
+//matching datatype of pointer pointer to a variable is important else throws compile time errors.
+ #include<stdio.h> 
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  char ch='1';
+  char *cptr= &ch;
+  float f= 2.5;
+  float *fptr= &f;
+  double d=8.890;
+  double *dptr= &d;
+  
+  printf("%p %d\n",ptr,*ptr);// 100  10
+  printf("%p %c\n",cptr,*cptr);// 100 1
+  printf("%p %f\n",fptr,*fptr);//100  2.50000
+  printf("%p %lf\n",dptr,*dptr);//100  8.89000 
+  return 0;
+}
+
+3. finding sizeof()
+
+#include<stdio.h> 
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  char ch='1';
+  char *cptr= &ch;
+  float f= 2.5;
+  float *fptr= &f;
+  double d=8.890;
+  double *dptr= &d;
+  
+  printf("%lu %lu\n",sizeof(ptr),sizeof(*ptr));//8  4
+  printf("%lu %lu\n",sizeof(cptr),sizeof(*cptr));//8  1
+  printf("%lu %lu\n",sizeof(fptr),sizeof(*fptr));//8   4
+  printf("%lu %lu\n",sizeof(dptr),sizeof(*dptr));//8   8 
+  return 0;
+}
+
+4. ...........
+
+#include<stdio.h> 
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  
+  printf("%d\n",*ptr);//10
+  *ptr=78;
+  printf("%d\n",*ptr);//78
+  ptr =90; // pointer can hold the address but not value
+  printf("%d\n",*ptr); //<-----
+  return 0;
+}
+
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c: In function ‘main’:
+res.c:11:7: warning: assignment to ‘int *’ from ‘int’ makes pointer from integer without a cast [-Wint-conversion]
+   11 |   ptr =90;// pointer can hold the address but not value
+      |       ^
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+10
+78
+Segmentation fault (core dumped)
+
+5. post increment & pre increment
+
+#include<stdio.h>//post increment
+int main()
+{
+  int a=10;
+  int *ptr= &a;
+  printf("%p\n",ptr);//100
+  ptr++;//100
+  printf("%p\n",ptr);//104
+  
+  char ch='a';
+  char *cptr=&ch;
+  printf("%p\n",cptr);//100
+  cptr++;//100
+  printf("%p\n",cptr);//101
+  return 0;
+}
+---------------------------------------------    
+#include<stdio.h> //pre increment
+int main()
+{
+  int a=10;
+  int *ptr= &a;
+  printf("%p\n",ptr);//100
+  printf("%p\n",++ptr);//104
+  printf("%p\n",ptr);//104
+  
+  char ch='a';
+  char *cptr=&ch;
+  printf("%p\n",cptr);//100
+  ++cptr;//101
+  printf("%p\n",cptr);//101
+  return 0;
+}    
+
+6. adding two pointers
+
+#include<stdio.h>
+int main()
+{
+  int a=10;
+  int *ptr= &a;
+  printf("%u\n",ptr);//100
+  ptr=ptr+5;//120
+  printf("%u\n",ptr);//120
+  
+  char ch='a';
+  char *cptr=&ch;
+  printf("%u\n",cptr);//100
+  cptr=cptr+5;//105
+  printf("%u\n",cptr);//105
+  return 0;
+}
+
+
+7. subratating two pointers
+
+#include<stdio.h>
+int main()
+{
+  int a=10;
+  int *ptr= &a;
+  printf("%u\n",ptr);//100
+  ptr=ptr-5;//80
+  printf("%u\n",ptr);//80
+  
+  char ch='a';
+  char *cptr=&ch;
+  printf("%u\n",cptr);//100
+  cptr=cptr-5;//95
+  printf("%u\n",cptr);//95
+  return 0;
+}
+
+8. write a program to implement strlen,strcpy,strcmp,strcat using pointer and functions.
+
+#include<stdio.h>
+
+int str_len(char *str) // length
+{  
+   int i;
+   int len=0;
+   for(i=0;str[i]!='\0';i++)
+   {
+     len++;
+   }
+   return i;
+}
+
+void str_cpy(char *des, char *str) // copy
+{ 
+   int i;
+   for(i=0;str[i]!='\0';i++)
+   {
+     des[i]=str[i];
+   }
+   des='\0';
+}
+
+int str_cmp(char *str, char *str1) // compare 
+{
+  int i;
+  for(i=0; str[i]!='\0' || str1[i]!='\0'; i++)
+  {
+     if( str[i] != str1[i])
+     {
+       return 1;
+     }
+   }
+   return 0;
+}
+
+int main()
+{
+   char str[100], str1[100],str3[100];
+   int len;
+   
+   printf("enter the string1:\n");
+   scanf(" %[^\n]s",str);
+   
+   len = str_len(str);
+   printf("The length of the string(str) is %d\n", len);
+   
+   printf("enter the string2:\n");
+   scanf(" %[^\n]s",str1);
+   
+   str_cpy(str3,str);
+   printf("The copied string is %s\n",str3);
+   
+   int comp = str_cmp(str,str1);
+   
+   
+   if(comp==0)
+   {
+     printf("string identical\n");
+   }
+   else
+   {
+     printf("string are different\n");
+   }  
+   return 0;
+}
+
+              or
+
+#include<stdio.h>
+#include<string.h>
+
+int str_length(const char*str) // functions to calculate the length
+{
+    int len=0;
+    while(str[len]!='\0')
+    {
+        len++;
+    }
+    return len;
+}
+
+void str_copybuffer(char *dest,const char *src) // functions to copy the string
+{
+    int i=0;
+    while(src[i]!='\0')
+    {
+        dest[i]=src[i];
+        i++;
+    }
+    dest[i]='\0';
+}
+
+void str_copy(char*dest,const char*src,int index) // functions to copy a character from one string to another
+{
+    dest[0]=src[index];
+    dest[1]='\0';
+}
+
+void str_concat(char*dest,const char*src) // functions to concatenate two strings
+{
+    int dest_len=str_length(dest);
+    int i=0;
+    while(src[i]!='\0')
+    {
+        dest[dest_len+i]=src[i];
+        i++;
+    }
+    dest[dest_len+i]='\0';
+}
+
+void str_nconcat(char*dest,const char*src,int n) // functions to concatenate a string with a limited number of characters
+{
+    int dest_len=str_length(dest);
+    int i=0;
+    while(src[i]!='\0'&&i<n)
+    {
+        dest[dest_len+i]=src[i];
+        i++;
+    }
+    dest[dest_len+i] = '\0';
+}
+
+int str_compare(const char*str1,const char*str2)
+{
+    int i=0;
+    while(str[i]==str2[i])
+    {
+        if(str[i]=='\0')
+        {
+            return 0;
+        }
+        i++;
+    }
+    
+int str_ncompare(const char*str1,const char*str2,int n)
+{
+    int i=0;
+    while(str1[i]==str2[i]&&i<n)
+    {
+        if(str1[i]=='\0'||i==n-1)
+        {
+            return 0;
+        }
+        i++;
+    }
+    return str1[i]-str2[i];
+}
+
+int main()
+{
+    char str1[] = "Hello";
+    char str2[] = "World";
+    char str3[50];
+    char str4[50];
+    char str5[50] = "This is a ";
+    char str6[50] = " test";
+    char str7[]  = " programming";
+    char str8[] = "gra";
+    char str9[] = "This is a test string";
+    char delim[] = " ";
+    printf("length of str1: %d\n", str_length(str1));
+    str_copybuffer(str3,str1);
+    printf("copy of str1: %s\n",str3);
+    str_copy(str4,str1,2);
+    printf("character copy from str1: %s\n",str4);
+    str_concat(str5,str2);
+    printf("concatenate of str5 and str2: %s\n",str5);
+    str_nconcat(str6,str2,3);
+    return 0;
+}
+
+9/07/2024
+
+9. pointer array
+
+#include<stdio.h>
+int main()
+{
+  int arr[] = {10,20,30,40,50};
+  
+  printf("%u\n",arr);//base address  100
+  printf("%u\n",&arr[0]);// 100
+  printf("%u\n",&arr[1]);//104
+  printf("%d\n",arr[2]);//30
+  printf("%d\n",2[arr]);//30
+  printf("%u\n",arr+2);//108
+  printf("%d\n",*(arr+2));//30
+  printf("%d\n",*(2+arr));//30
+  printf("%d\n",*arr+2);//12
+  printf("%d\n",arr[-1]);//invalid
+  int *ptr=arr;// assign array elements to pointer
+  printf("%d\n",ptr[2]);//30
+  printf("%d\n",2[ptr]);//30
+  printf("%d\n",*(ptr+2));//30
+  printf("%d\n",*(2+ptr));//30
+  ptr=&arr[3];//112
+  printf("%d\n",ptr[-1]);//30
+  return 0;
+}
+
+123. charcater pointer
+
+##include<stdio.h>
+int main()
+{
+  char str[] = "cranes";
+  char *ptr=str;
+  printf("%c\n",++*ptr);//d
+  printf("%s\n",str);//dranes
+  printf("%c\n",*ptr++);//d
+  printf("%s\n",ptr);//ranes
+  printf("%s\n",str);//dranes
+ // str++; //invalid
+  return 0;
+}
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c: In function ‘main’:
+res.c:11:6: error: lvalue required as increment operand
+   11 |   str++;
+      |      ^~
+
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+d
+dranes
+d
+ranes
+dranes
+
+10.
+
+#include<stdio.h>
+int main()
+{
+  char str[]="India";
+  char *ptr=str;
+  printf("%d\n",sizeof(ptr));//8
+  printf("%d\n",sizeof(str));//6
+  printf("string is %s\n",ptr);//India
+  printf("Address of str or ptr value = %p\n",ptr);//100
+  printf("%c\n ", *ptr++);//I
+  printf("%p\n ", ptr);//101
+  printf("%s\n ", ptr);//ndia
+  printf("%c\n ", ++*ptr);//o
+  printf("Actual string = %s\n",str);//Iodia
+  printf("%c\n " , *--ptr);//I
+  printf("%c\n " , *++ptr);//o
+  printf("%c\n" , *ptr++);//o
+  printf("%c\n" , *ptr--);//d
+  return 0;
+}
+
+11. difference b/w array and pointer
+
+#include<stdio.h>
+void func(int *arr);
+int main()
+{
+  int arr[4] = {10,20,30,40};
+  func(arr);
+  printf("%d\n",sizeof(arr));//16
+ // arr++;//invalid
+  return 0;
+}
+
+void func(int arr[])
+{
+  printf("%d\n",sizeof(arr));//8
+  
+  arr++;//valid
+}
+
+12. difference b/w array and pointer
+
+#include<stdio.h>
+void print_arry(int arr[]);
+
+void print_array(int arr[])
+{
+  int i;
+  for(i=0;i<sizeof(arr) / sizeof(int);i++)
+  {
+    printf("in fun %d\n ", *(arr+i));
+  }
+}
+
+int main()
+{
+  int arr[] ={10,20,30,40,50};
+  int i;
+  for(i=0;i<sizeof(arr) / sizeof(int);i++)
+  {
+    printf("in main %d\n ", arr[i]);
+  }
+  
+  print_array(arr);
+  return 0;   
+}
+
+13. difference b/w array and pointer
+
+#include<stdio.h>
+void print_arry(int arr[]);
+
+void print_array(int arr[])
+{
+  int i,x;
+  for(i=0;i<4;i++)
+  {
+    x=(*arr)++;
+    printf("in fun %d %d\n", x,*arr);
+    arr++;
+  }
+}
+
+int main()
+{
+  int arr[] ={10,20,30,40,50};
+  int i;
+  print_array(arr);
+  for(i=0;i<4;i++)
+  {
+    printf("in main %d\n",arr[i]);
+  }
+  return 0;   
+}
+
+14. pointer to pointer 
+
+#include<stdio.h>
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  int **pptr = &ptr; 
+  printf("%u\n",ptr);
+  printf("%u\n",&a);
+  printf("%u\n",&ptr);
+  printf("%u\n",pptr);
+  printf("%u\n",&pptr);
+  printf("%d\n",*ptr); 
+  printf("%u\n",*pptr); 
+  printf("%d\n",**pptr); 
+  return 0;
+}
+       or
+#include<stdio.h>
+int main()
+{
+  int a=10;
+  int *ptr = &a;
+  int **pptr = &ptr;
+  printf("%p\n",ptr);
+  printf("%p\n",&a);
+  printf("%p\n",&ptr);
+  printf("%p\n",pptr);
+  printf("%p\n",&pptr);
+  printf("%d\n",*ptr); 
+  printf("%p\n",*pptr); 
+  printf("%d\n",**pptr); 
+  return 0;
+}
+
+15. wild pointer
+
+#include<stdio.h> //wild pointer
+int main()
+{
+  int *ptr;
+  printf("%d\n",*ptr);
+  return 0;
+}
+
+16. null.
+
+#include<stdio.h> //NULL pointer
+int main()
+{
+  int *ptr = NULL;
+  printf("%d\n",*ptr);
+  return 0;
+}
+
+17. void pointer
+
+#include<stdio.h> //void pointer
+int main()
+{
+  int a=10;
+  void *vptr = &a;
+  printf("%d\n",*(int*)vptr);
+  char ch='k';
+  vptr = &ch;
+  printf("%c\n",*(char*)vptr);
+  float f=2.8;
+  vptr = &f;
+  printf("%f\n",*(float*)vptr);
+  double d=2.888;
+  vptr = &d;
+  printf("%lf\n",*(double*)vptr);
+  return 0;
+}
+
+18. dangling pointer
+
+#include<stdio.h> //dangling pointer
+int* func();
+int main()
+{
+  int *ptr = func();
+  printf("%d\n",*ptr);
+  return 0;
+}
+
+int* func()
+{
+  int a=10;
+  int *p=&a;
+  return p;
+}
+
+19. const 
+
+#include<stdio.h>
+int main()
+{
+  const int a=10;
+  printf("%d\n",a);
+  a=20;//invalid
+  printf("%d\n",a);
+  return 0;
+}
+  
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c: In function ‘main’:
+res.c:6:4: error: assignment of read-only variable ‘a’
+    6 |   a=20;
+      |    ^
+
+// how to modify
+
+#include<stdio.h>
+int main()
+{
+  const int a=10;
+  printf("%d\n",a);
+  printf("enter a new value\n");
+  scanf("%d",&a);
+  printf("new value is %d\n",a);
+  int *ptr = &a;
+  *ptr = 467;
+  printf("%d\n",*ptr);
+  return 0;
+}
+ 
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c: In function ‘main’:
+res.c:7:3: warning: writing into constant object (argument 2) [-Wformat=]
+    7 |   scanf("%d",&a);
+      |   ^~~~~
+res.c:9:14: warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+    9 |   int *ptr = &a;
+      |              ^
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+10
+enter a new value
+60
+new value is 60
+467
+
+10/07/24
+
+20. pointer to a constant
+
+#include<stdio.h>
+int main()
+{
+ int a=10,b=30;
+ int const *ptr=&a;
+ printf("%d\n",a);
+ a=56;
+ printf("%d\n",a);
+// *ptr=45; // invalid
+ printf("%d\n",a);
+ ptr=&b;
+ printf("%d\n",*ptr);
+ return 0;
+}
+
+res.c: In function ‘main’:
+res.c:9:6: error: assignment of read-only location ‘*ptr’
+    9 |  *ptr=45;
+      |      ^
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+10
+56
+56
+30
+
+21. constant pointer
+
+#include<stdio.h>
+int main()
+{
+ int a=10,b=30;
+ int *const ptr=&a;
+ printf("%d\n",a);
+ a=56;
+ printf("%d\n",a);
+ *ptr=45; 
+ printf("%d\n",a);
+// ptr=&b;// invalid
+ printf("%d\n",*ptr);
+ return 0;
+}
+
+res.c: In function ‘main’:
+res.c:11:5: error: assignment of read-only variable ‘ptr’
+   11 |  ptr=&b;
+      |     ^
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+10
+56
+45
+45
+
+22. pointer to a constant and constant pointer
+
+#include<stdio.h>
+int main()
+{
+ int a=10,b=30;
+ const int *const ptr=&a;
+ printf("%d\n",a);
+ a=56;
+ printf("%d\n",a);
+// *ptr=45; // invalid
+ printf("%d\n",a);
+// ptr=&b;// invalid
+ printf("%d\n",*ptr);
+ return 0;
+}
+
+res.c: In function ‘main’:
+res.c:9:6: error: assignment of read-only location ‘*(const int *)ptr’
+    9 |  *ptr=45;
+      |      ^
+res.c:11:5: error: assignment of read-only variable ‘ptr’
+   11 |  ptr=&b;// invalid
+      |     ^
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+10
+56
+56
+56
+
+23. Pointer to an array
+
+#include<stdio.h>
+int main()
+{
+  int arr[]={10,20,30,40,50};
+  int *ptr=arr; //points to the element address
+  int (*pptr)[3]=&arr;// points to the address of the particular row
+  printf("%u\n",ptr);//100
+  printf("%u\n",pptr);//100
+  printf("%d\n",*ptr);//10
+  printf("%u\n",*pptr);//100
+  printf("%d\n",**pptr);//10
+  printf("%u\n",*pptr+1);//104
+  printf("%d\n",*(*pptr+1));//20
+  printf("%u\n",*pptr+3);//112
+  printf("%d\n",*(*pptr+3));//40
+  printf("%d\n",**pptr+3);//13
+        
+    printf("%d\n",sizeof(ptr));//8
+    printf("%d\n",sizeof(pptr));//8
+    printf("%d\n",sizeof(*ptr));//4
+    printf("%d\n",sizeof(*pptr));//12
+    printf("%d\n",sizeof(arr));//20
+    printf("%d\n",sizeof(**pptr));//4
+       
+      ptr++;
+      printf("%u\n",ptr);//104
+       
+        pptr++;    
+        printf("%u\n",pptr);//112
+}
+
+24. pointer to 2d array
+
+#include<stdio.h>
+int main()
+{
+  int arr[][3]={23,45,67,89,54,42,31};
+  int (*ptr)[3]=&arr;
+  printf("%u\n",ptr[0]);//100
+  printf("%u\n",ptr[0]+1);//104
+  printf("%u\n",ptr+1);//112
+  printf("%d\n",ptr[0][0]);//23
+  printf("%u\n",*(ptr+1)+2);//120
+  printf("%d\n",*(*(ptr+1)+2));//42
+  printf("%d\n",ptr[1][2]);//42
+  printf("%u\n",ptr[1][-1]);//67
+  return 0;
+}
+
+25. 
+
+#include<stdio.h>
+void printMat(int mat[][4]);
+void printMat(int mat[][4])
+{
+  printf("mat = %u\n",mat);
+  printf("mat+1 = %u\n",mat+1);
+  printf("*mat = %u\n",*mat);
+  printf("*mat+1 = %u\n",*mat+1);
+  printf("**mat+1 = %u\n",**mat+1);
+  printf("*(*mat+1) = %u\n",*(*mat+1));
+  printf("**(mat+1) = %u\n",**(mat+1));
+}
+
+int main()
+{
+   int matrix[][4] = {{12,23,34,56},{56,67,78,89},{21,32,43,54}};
+   printMat(matrix);  
+   return 0;
+}
+   
+26. array of pointer
+
+#include<stdio.h>
+int main()
+{
+  int a=10,b=20,c=30,d=40;
+  int *ptr[4] = {&a,&b,&c,&d};
+  printf("%p %d\n",ptr[0],*ptr[0]);
+  printf("%p %d\n",ptr[1],*ptr[1]);
+  printf("%p %d\n",ptr[2],*ptr[2]);
+  printf("%p %d\n",ptr[3],*ptr[3]);
+  return 0;
+}
+
+27.  
+
+#include<stdio.h>
+int main()
+{
+    int arr[][3]={1,2,3,4,5,6,7,8};
+    printf("%d\n",sizeof(arr));
+    fun(arr);
+    return 0;
+}
+void fun(int arr[][3])
+{
+    printf("%d\n",sizeof(arr));
+    printf("%d\n",sizeof(*arr));
+    printf("%d\n",sizeof(**arr));
+}
+
+11/07/2024
+
+28. malloc
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+  int *ptr = (int *)malloc(sizeof(int));
+  if(ptr == NULL)
+  {
+    printf("Heap is full\n");
+  }
+  *ptr=78;
+  printf("address: %p\n",ptr);
+  printf("value: %d\n",*ptr);
+  free(ptr);
+  return 0;
+}
+
+29. calloc
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+  int *ptr = (int *)calloc(2,sizeof(int));
+  if(ptr == NULL)
+  {
+    printf("Heap is full\n");
+  }
+  *ptr=78;
+  printf("address: %p\n",ptr);
+  printf("value: %d\n",*ptr);
+  free(ptr);
+  return 0;
+}
+
+30. ------------
+
+#include<stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int arr[5];
+  free(arr);
+  return 0;
+}
+
+res.c: In function ‘main’:
+res.c:6:3: warning: ‘free’ called on unallocated object ‘arr’ [-Wfree-nonheap-object]
+    6 |   free(arr);
+      |   ^~~~~~~~~
+res.c:5:7: note: declared here
+    5 |   int arr[5];
+      |       ^~~
+
+31. write a program to dynamically allocate memory of an array of size 5, scan and print the value.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+ {
+   int *ptr = (int *)malloc(5 * sizeof(int));
+
+    if (ptr == NULL)
+    {
+        printf("Heap is full\n");
+        exit(0);
+    }
+    int i;
+    printf("Enter the array elements:\n");
+    for (i = 0; i < 5; i++)
+    {
+        scanf("%d", &ptr[i]);
+    }
+    printf("The entered array elements are:\n");
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d ", ptr[i]);
+    }
+    printf("\n");
+    free(ptr);
+
+    return 0;
+}
+
+32. using realloc
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+ {
+   int *ptr = (int *)malloc(5 * sizeof(int));
+
+    if (ptr == NULL)
+   {
+        printf("Heap is full\n");
+        exit(0);
+    }
+    int i;
+    printf("Enter the array elements:\n");
+    for (i = 0; i < 5; i++)
+    {
+        scanf("%d",(ptr+i));
+    }
+    printf("The entered elements are:\n");
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d ", *(ptr+i));
+    }
+    printf("\n");
+    
+    ptr = realloc(ptr,40);// <--- increasing memory bytes. (20 to 40)
+    
+    printf("enter the rest of the elements:\n");
+    for (i = 5; i < 10; i++)
+    {
+        scanf("%d",(ptr+i));
+    }
+    printf("All the elements are:\n");
+    for (i = 0; i < 10; i++)
+    {
+        printf("%d ", *(ptr+i));
+    }
+    printf("\n");    
+    free(ptr);
+
+    return 0;
+}
+ 
+33. write a program to dynamically allocate memory to a matrix using pointer to an array, scan and print the value.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int rows, cols;
+    int **matrix;
+    int i, j;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    matrix = (int **)malloc(rows * sizeof(int *));
+    if (matrix == NULL)
+    {
+        printf("Heap is full\n");
+        return 1;
+    }
+    for (i = 0; i < rows; i++)
+    {
+        matrix[i] = (int *)malloc(cols * sizeof(int));
+        if (matrix[i] == NULL)
+        {
+            printf("Heap is full\n");
+            return 1;
+        }
+    }
+    printf("Enter the values for the matrix:\n");
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < cols; j++)
+        {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    printf("The entered matrix is:\n");
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < cols; j++)
+        {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    for (i = 0; i < rows; i++) 
+    {
+        free(matrix[i]);
+    }
+    free(matrix);
+
+    return 0;
+}
+          or
+    
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int rows, cols;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    int (*matrix)[3] = (int (*)[])malloc(rows*cols*sizeof(int));
+    
+    int i, j;
+    printf("Enter the values for the matrix:\n");
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < cols; j++)
+        {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    
+    printf("The entered matrix is:\n");
+    for (i = 0; i < rows; i++)
+    {
+        for (j = 0; j < cols; j++)
+        {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    free(matrix);
+
+    return 0;
+}
+
+34. In program the command free() is twice what will happen.
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+  int *ptr = (int *)malloc(sizeof(int));
+  if(ptr == NULL)
+  {
+    printf("Heap is full\n");
+  }
+  *ptr=78;
+  printf("address: %p\n",ptr);
+  printf("value: %d\n",*ptr);
+  free(ptr);
+  free(ptr);
+  return 0;
+}
+
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+address: 0x561bf2f392a0
+value: 78
+free(): double free detected in tcache 2
+Aborted (core dumped)
+
+
+35. alternate for free() functions.
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+  int *ptr = (int *)malloc(sizeof(int));
+  if(ptr == NULL)
+  {
+    printf("Heap is full\n");
+  }
+  *ptr=78;
+  printf("address: %p\n",ptr);
+  printf("value: %d\n",*ptr);
+  ptr = realloc(ptr,0);//  <------ alternate 
+  return 0;
+}
+   /*---------------------------- * COMMAND LINE ARGUMENT * ----------------------------- */
+    
+15/07/2024
+
+36. command line argument
+
+#include<stdio.h>
+int main(int argc, char *argv[])
+{
+  printf("%d\n",argc);
+  printf("%s\n",argv[0]);
+  printf("%s\n",argv[1]);
+  printf("%s\n",argv[2]);
+  printf("%s\n",argv[3]);
+  printf("%s\n",argv[4]);
+  return 0;
+}
+
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+revanth@revanth-inspiron:~/Desktop/c$ ./res revanth rajesh hemanth sanjay
+5
+./res
+revanth
+rajesh
+hemanth
+sanjay
+
+37. write a program to take n i/p on command line and print all of tham.
+
+#include<stdio.h>
+int main(int argc, char *argv[])
+{
+  printf("Number of arguments are %d\n",argc);
+  for(int i=0;i<argc;i++)
+  {
+     printf("%s\n",argv[i]);
+  }
+  return 0;
+}
+
+revanth@revanth-inspiron:~/Desktop/c$ ./res revanth rajesh hemanth sanjay tarun nagraj srikanth rami
+Number of arguments are 9
+./res
+revanth
+rajesh
+hemanth
+sanjay
+tarun
+nagraj
+srikanth
+rami
+
+38. sum of two numbers using command line argument
+
+#include<stdio.h>
+#include<stdlib.h> // atoi(arg)- convert the string to integer
+int main(int argc, char *argv[])
+{
+  int sum = atoi(argv[1]) + atoi(argv[2]);
+  printf("%d\n",sum);
+  return 0;
+}
+
+39. sum of n numbers using command line argument.
+
+#include<stdio.h>
+#include<stdlib.h> // atoi(arg)- convert the string to integer
+int main(int argc, char *argv[])
+{
+  int sum;
+  for(int i=0;i<argc;i++)
+  {
+     sum+= atoi(argv[i]);
+  }
+  printf("%d\n",sum);
+  return 0;
+}
+
+revanth@revanth-inspiron:~/Desktop/c$ ./res 0 1 2 3 4 5 6 7 8 9 10 11 12 1 3
+82
+revanth@revanth-inspiron:~/Desktop/c$ ./res 25i 96ed f g89 33c
+154
+
+40. sum of n numbers 
+
+#include<stdio.h>
+#include<stdlib.h> // atof(arg)- convert the string to float
+int main(int argc, char *argv[])
+{
+  float sum;
+  for(int i=0;i<argc;i++)
+  {
+     sum+= atof(argv[i]);
+  }
+  printf("%lf\n",sum);
+  return 0;
+}
+   /*------------------------------------ * structure * ---------------------------------- */
+   
+41. 
+
+#include<stdio.h>
+struct emp
+{
+  int id;
+  float sal;
+  char name[100];
+}e1={12,5.69,"revanth"};
+
+int main()
+{
+  printf("%d %f %s \n",e1.id,e1.sal,e1.name);
+  return 0;
+}
+
+42. 
+
+#include<stdio.h>
+struct emp
+{
+  int id;
+  float sal;
+  char name[100];
+}e1={12,5.69,"revanth"},e2={13,6.69,"rajesh"};
+struct emp e3={14,7.69,"sanjay"};
+
+int main()
+{
+  struct emp e4={15,8.69,"hemanth"};
+  printf("%d %f %s \n",e1.id,e1.sal,e1.name);
+  printf("%d %f %s \n",e2.id,e2.sal,e2.name);
+  printf("%d %f %s \n",e3.id,e3.sal,e3.name);
+  printf("%d %f %s \n",e4.id,e4.sal,e4.name);
+  return 0;
+}
+
+43. using functions
+
+#include<stdio.h>
+void func();
+struct emp //global structure template
+{
+  int id;
+  float sal;
+  char name[100];
+}e1={12,5.69,"revanth"},e2={13,6.69,"rajesh"};//global structure variable
+struct emp e3={14,7.69,"sanjay"};//global structure variable
+
+int main()
+{
+  struct emp e4={15,8.69,"hemanth"};//local structure variable
+  printf("%d %f %s \n",e1.id,e1.sal,e1.name);
+  printf("%d %f %s \n",e2.id,e2.sal,e2.name);
+  printf("%d %f %s \n",e3.id,e3.sal,e3.name);
+  printf("%d %f %s \n",e4.id,e4.sal,e4.name);
+  func();
+  return 0;
+}
+
+void func()
+{
+  printf("in function: \n");
+  printf("%d %f %s \n",e1.id,e1.sal,e1.name);
+  printf("%d %f %s \n",e2.id,e2.sal,e2.name);
+  printf("%d %f %s \n",e3.id,e3.sal,e3.name);
+ // printf("%d %f %s \n",e4.id,e4.sal,e4.name);// invaild because it declare in local variable.
+}
+
+44. write a program to i/p 3 structures details with the help of array variable of type structure.
+
+#include<stdio.h>
+#define size 3
+struct emp
+{
+  int id;
+  float sal;
+  char name[100];
+}arr[size];
+
+int main()
+{
+  printf("enter the details:\n");
+  for(int i=0;i<size;i++)
+  {
+    scanf("%d %f %s",&arr[i].id,&arr[i].sal,arr[i].name);
+  }
+  printf("The details are:\n");
+  for(int i=0;i<size;i++)
+  {
+    printf("%d %f %s \n",arr[i].id, arr[i].sal,arr[i].name);
+  }
+  return 0;
+}
+
+45. i/p declare a structure assign the point to structure, scan and print the value to the structure using pointer.
+
+#include<stdio.h>
+struct st
+{
+  int a;
+  float f;
+  char ch;
+};
+
+int main()
+{
+  struct st s,*ptr;
+  ptr = &s;
+  printf("enter the structure data\n");
+  scanf("%d %f %c",&ptr->a,&ptr->f,&ptr->ch);
+  printf("the entered structure data are\n");
+  printf("%d %f %c\n",ptr->a,ptr->f,ptr->ch);  
+  return 0;
+}
+
+46. Implementation of pass by value to structured variable.
+
+#include<stdio.h>
+struct st
+{
+  int a;
+  float f;
+  char ch;
+};
+void func(struct st s);
+int main()
+{
+  struct st s;
+  printf("before function call a=%d f=%f ch=%c\n",s.a,s.f,s.ch);
+  func(s);
+  printf("after function call a=%d f=%f ch=%c\n",s.a,s.f,s.ch);  
+  return 0;
+}
+
+void func(struct st s)
+{
+  s.a=10;
+  s.f=2.5;
+  s.ch='k';
+  printf("in function a=%d f=%f ch=%c\n",s.a,s.f,s.ch);
+}
+
+47. Implementation of pass by address to structured variable.
+
+#include<stdio.h>
+struct st
+{
+  int a;
+  float f;
+  char ch;
+};
+void func(struct st *s);
+int main()
+{
+  struct st s;
+  printf("before function call a=%d f=%f ch=%c\n",s.a,s.f,s.ch);
+  func(&s);
+  printf("after function call a=%d f=%f ch=%c\n",s.a,s.f,s.ch);  
+  return 0;
+}
+
+void func(struct st *s)
+{
+  s->a=10;
+  s->f=2.5;
+  s->ch='k';
+  printf("in function a=%d f=%f ch=%c\n",s->a,s->f,s->ch);
+}
+  
+22/07/2024
+
+48. coping one 
+
+#include<stdio.h>
+struct emp
+{
+  int id;
+  float sal;
+  char name[100];
+}e1={12,5.69,"revanth"};
+
+int main()
+{
+  struct emp e;
+  e=e1;//coping
+  printf("%d %f %s \n",e1.id,e1.sal,e1.name);
+  printf("%d %f %s \n",e.id,e.sal,e.name);
+  return 0;
+}
+
+49. 
+
+#include<stdio.h>
+struct st
+{
+  int a;
+  char ch;
+  char c;
+  short r;  
+}s;
+
+int main()
+{
+
+  printf("%lu\n",sizeof(s));
+  return 0;
+}
+
+50.
+
+#include<stdio.h>
+#pragma pack(1)
+struct st
+{
+  int a;//4 bytes
+  char ch;//1 bytes
+  char c;//1 bytes
+  short r;//2 bytes
+  char str[30];//30 bytes
+}s;
+
+int main()
+{
+
+  printf("%lu\n",sizeof(s));
+  return 0;
+}
+
+   /*----------------------------------- * Union * ---------------------------------- */
+
+51. 
+
+#include<stdio.h>
+union un
+{
+  int a;
+  float f;
+  char ch;
+}u={12,8.5,'r'};
+
+int main()
+{
+
+  printf("%lu\n",sizeof(u));
+  printf("%d %f %c\n",u.a,u.f,u.ch);
+  return 0;
+}
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c:7:8: warning: excess elements in union initializer
+    7 | }u={12,8.5,'r'};
+      |        ^~~
+res.c:7:8: note: (near initialization for ‘u’)
+res.c:7:12: warning: excess elements in union initializer
+    7 | }u={12,8.5,'r'};
+      |            ^~~
+res.c:7:12: note: (near initialization for ‘u’)
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+4
+12 0.000000 
+
+
+52. 
+
+#include<stdio.h>
+union un
+{
+  int a;
+  float f;
+  char ch;
+}u={12,8.5,'r'};
+
+int main()
+{
+
+  printf("%lu\n",sizeof(u));
+  printf("%d %f %c\n",u.a,u.f,u.ch);
+  u.a=13;
+  printf("%d\n",u.a);
+  u.f=9.5;
+  printf("%f\n",u.f);
+  u.ch='e';
+  printf("%c\n",u.ch);
+  return 0;
+}
+revanth@revanth-inspiron:~/Desktop/c$ gcc res.c -o res
+res.c:7:8: warning: excess elements in union initializer
+    7 | }u={12,8.5,'r'};
+      |        ^~~
+res.c:7:8: note: (near initialization for ‘u’)
+res.c:7:12: warning: excess elements in union initializer
+    7 | }u={12,8.5,'r'};
+      |            ^~~
+res.c:7:12: note: (near initialization for ‘u’)
+revanth@revanth-inspiron:~/Desktop/c$ ./res
+4
+12 0.000000 
+
+13
+9.500000
+e
+
+   /*----------------------------------- * typedef * ---------------------------------- */
+   
+53. 
+
+#include<stdio.h>
+int main()
+{
+    typedef int num;
+    num a,b;
+    printf("%lu %lu\n",sizeof(a),sizeof(b));
+    typedef char alpha;
+    alpha char1,char2;
+    printf("%lu %lu\n",sizeof(char1),sizeof(char2));
+    typedef int *ptr;
+    ptr p1,p2;
+    printf("%lu %lu\n",sizeof(p1),sizeof(p2));
+    typedef int arr[10];
+    arr a1,a2;
+    printf("%lu %lu\n",sizeof(a1),sizeof(a2));
+    return 0;
+}
+
+54. typedef using in structure
+
+#include<stdio.h>
+struct st
+{
+  int a;
+  char ch;
+};
+typedef struct st new;
+int main()
+{
+  new s1={12,'k'};
+  printf("%lu\n",sizeof(new));
+  printf("%d %c\n",s1.a,s1.ch);
+  return 0;
+}
+
+   /*----------------------------------- * enum * ---------------------------------- */
+
+55.
+
+#include<stdio.h>
+enum weekday{sun,mon,tue,wed,thu,fri,sat};
+int main()
+{
+  printf("%d\n",sun);
+  printf("%d\n",mon);
+  printf("%d\n",tue);
+  printf("%d\n",wed);
+  printf("%d\n",thu);
+  printf("%d\n",fri);
+  printf("%d\n",sat);
+ // printf("%d\n",sat++);// error: lvalue required as increment operand
+  return 0;
+}
+ 
+ 
+
