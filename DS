@@ -1,0 +1,1028 @@
+1. stack 
+
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 4
+
+int top = -1;
+int inp_array[SIZE];
+void push();
+void pop();
+void show();
+
+int main()
+{
+    int choice;
+
+    while (1)
+    {
+        printf("\nPerform operations on the stack:");
+        printf("\n1.Push the element\n2.Pop the element\n3.Show\n4.End");
+        printf("\n\nEnter the choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            show();
+            break;
+        case 4:
+            exit(0);
+
+        default:
+            printf("\nInvalid choice!!");
+        }
+    }
+}
+
+void push()
+{
+    int x;
+
+    if (top == SIZE - 1)
+    {
+        printf("\nOverflow!!");
+    }
+    else
+    {
+        printf("\nEnter the element to be added onto the stack: ");
+        scanf("%d", &x);
+       // top = top + 1;
+       top++;
+        inp_array[top] = x;
+    }
+}
+
+void pop()
+{
+    if (top == -1)
+    {
+        printf("\nUnderflow!!");
+    }
+    else
+    {
+        printf("\nPopped element: %d", inp_array[top]);
+        //top = top - 1;
+        top--;
+    }
+}
+
+void show()
+{
+    if (top == -1)
+    {
+        printf("\nUnderflow!!");
+    }
+    else
+    {
+        printf("\nElements present in the stack: \n");
+        for (int i = top; i >= 0; --i)
+            printf("%d\n", inp_array[i]);
+    }
+}
+            or
+            
+#include<stdio.h>
+#define s 5
+ int stack[s];
+ int tos=-1;
+ void push(int ele);
+ void pop(void);
+ void display(void);
+ void push(int ele)
+ {
+     if(tos == s-1)
+     {
+         printf("stack is full\n");
+         return;
+     }
+     tos++;
+     stack[tos]=ele;
+ }
+ void pop()
+ {
+     if(tos == -1)
+     {
+         printf("stack is empty\n");
+         return;
+     }
+     printf("\n pop element is %d\n",stack[tos]);
+     tos--;
+ }
+ void display()
+ {
+     if(tos == -1)
+     {
+         printf("stack is empty\n");
+         return;
+     }
+     int i;
+     for(i=0;i<=tos;i++)
+     {
+         printf("%d\t",stack[i]);
+     }
+ }
+ int main()
+ {
+     push(10);
+     push(20);
+     push(30);
+     display();
+     pop();
+     pop();
+     push(40);
+     display();
+     pop();
+     display();
+     return 0;
+ }
+ 
+2. queue 
+
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 100
+void enqueue();
+void dequeue();
+void show();
+int inp_arr[SIZE];
+int Rear = - 1;
+int Front = - 1;
+int main()
+{
+    int ch;
+    while (1)
+    {
+        printf("1.Enqueue Operation\n");
+        printf("2.Dequeue Operation\n");
+        printf("3.Display the Queue\n");
+        printf("4.Exit\n");
+        printf("Enter your choice of operations : ");
+        scanf("%d", &ch);
+        switch (ch)
+        {
+            case 1:
+            enqueue();
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            show();
+            break;
+            case 4:
+            exit(0);
+            default:
+            printf("Incorrect choice \n");
+        } 
+    } 
+} 
+ 
+void enqueue()
+{
+    int insert_item;
+    if (Rear == SIZE - 1)
+       printf("Overflow \n");
+    else
+    {
+        if (Front == - 1)
+      
+        Front = 0;
+        printf("Element to be inserted in the Queue:\n ");
+        scanf("%d", &insert_item);
+        Rear = Rear + 1;
+        inp_arr[Rear] = insert_item;
+    }
+} 
+ 
+void dequeue()
+{
+    if (Front == - 1 || Front > Rear)
+    {
+        printf("Underflow \n");
+        return ;
+    }
+    else
+    {
+        printf("Element removed from the Queue: %d\n", inp_arr[Front]);
+        Front = Front + 1;
+    }
+} 
+ 
+void show()
+{
+    
+    if (Front == - 1)
+        printf("Empty Queue \n");
+    else
+    {
+        printf("In Queue: \n");
+        for (int i = Front; i <= Rear; i++)
+            printf("%d ", inp_arr[i]);
+        printf("\n");
+    }
+}
+    or
+#include<stdio.h>
+#define s 5
+int front;
+ int rear=-1;
+ int q[s];
+ void push(int ele)
+ {
+     if(rear == s-1)
+     {
+         printf("queue is full\n");
+         return;
+     }
+     rear++;
+     q[rear]=ele;
+ }
+ void pop()
+ {
+     if(rear>rear)
+     {
+         printf("queue is empty\n");
+         return;
+     }
+     printf("\n pop element is %d\n",q[front]);
+     front++;
+ }
+ void display()
+ {
+     
+     int i;
+     for(i=front;i<=rear;i++)
+     {
+     printf("\n%d\t",q[i]);
+     }
+ }
+ int main()
+ {
+     push(10);
+     push(20);
+     push(30);
+   //  push(40);
+    // push(50);
+     display();
+     pop();
+    display();
+    push(40);
+    display();
+    push(45);
+    pop();
+    display();
+     return 0;
+ } 
+ 
+3. Single-linked list
+
+#include<stdio.h>
+#include<stdlib.h>
+struct sll
+{
+    int data;
+    struct sll *next;//self referencial
+};
+
+typedef struct sll node;
+
+node *first=NULL,*last=NULL;
+
+void insert_node(int ele) //inserting nodes
+{
+    node *new=(node *)malloc(sizeof(node));
+    if(first==NULL)
+    {
+        new->data = ele;
+        new->next = NULL;
+        first=last = new;
+    }
+    else
+    {
+        new->data = ele;
+        new->next = NULL;
+        last->next = new;
+        last = new;
+    }
+}
+
+void display()// displaying node 
+{
+    node *temp=first;
+    while(temp != NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+}
+
+void insert_front(int ele)//inserting front node
+{
+  node *new=(node *)malloc(sizeof(node));
+  new->data=ele;
+  new->next=first;
+  first=new;
+}
+
+void insert_last(int ele)//inserting last node
+{
+  node *new=(node*)malloc(sizeof(node));
+  new->data=ele;
+  new->next=NULL;
+  last->next=new;
+  last=new;
+}
+
+void insert_mid(int ele)
+{
+  int key;
+  printf("enter the key elements\n");
+  scanf("%d",&key);
+  node *temp=first,*temp1;
+  while(temp->data !=key)
+  {
+    temp1=temp;
+    temp=temp->next;
+  }
+  node *new=(node*)malloc(sizeof(node));
+  new->data=ele;
+  new->next=temp;
+  temp1->next=new;
+}
+
+void del_front()
+{
+  node *temp=first;
+  first=first->next;
+  free(temp);
+}
+
+void del_last()
+{
+   node *temp=first,*temp1;
+   while(temp!=last)
+   {
+      temp1=temp;
+      temp=temp->next;
+   }
+   last=temp1;
+   last->next=NULL;
+   free(temp);
+}
+
+void del_mid()
+{
+  int key;
+  printf("enter the key elements\n");
+  scanf("%d",&key);
+  node *temp=first,*temp1;
+  while(temp->data !=key)
+  {
+    temp1=temp;
+    temp=temp->next;
+  }
+  temp1->next=temp->next;
+  free(temp);
+}   
+
+int main()
+{
+    printf("=========== insert_node ======= \n");
+    insert_node(10);
+    insert_node(20);
+    insert_node(30);
+    display();
+    printf("============== insert_front ========== \n");
+    insert_front(5);
+    display();
+    printf("============== insert_last ========== \n");
+    insert_last(40);
+    display();
+    printf("============== insert_mid ========== \n");
+    insert_mid(25);
+    display();
+    printf("============== del_front ========== \n");
+    del_front();
+    display();
+    printf("============== del_last ========== \n");
+    del_last();
+    display();
+    printf("============== del_mid ========== \n");
+    del_mid();
+    display();
+    return 0;
+}
+
+4. Doubly linked list 
+
+#include<stdio.h>
+#include<stdlib.h>
+struct dll
+{
+    int data;
+    struct dll *prev;//self referencial
+    struct dll *next;//self referencial
+};
+
+typedef struct dll node;
+
+node *first=NULL,*last=NULL;
+
+void insert_node(int ele) //inserting nodes
+{
+    node *new=(node *)malloc(sizeof(node));
+    if(first==NULL)
+    {
+        new->data = ele;
+        new->next = NULL;
+        new->prev=NULL;
+        first=last = new;
+    }
+    else
+    {
+        new->data = ele;
+        new->next = NULL;
+        last->next = new;
+        new->prev=last;
+        last = new;
+    }
+}
+void display()// displaying node 
+{
+    node *temp=first;
+    while(temp != NULL)
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+}
+
+void insert_front(int ele)
+{
+  node *new = (node *)malloc(sizeof(node));
+  new->data=ele;
+  new->next=first;
+  new->prev=NULL;
+  first->prev=new;
+  first=new;
+}
+
+void insert_last(int ele)
+{
+   node *new = (node *)malloc(sizeof(node));
+   new->data=ele;
+   new->next=NULL;
+   new->prev=last;
+   last->next=new;
+   last=new;
+}
+
+void insert_mid(int ele)
+{
+  int key;
+  printf("Enter a key node:");
+  scanf("%d",&key);
+  node *temp=first;
+  while(temp->data!=key)
+  {
+    temp=temp->next;
+  }
+  node *new=(node *)malloc(sizeof(node));
+  new->data=ele;
+  new->next=temp;
+  new->prev=temp->prev;
+  temp->prev->next=new;
+  temp->prev=new;
+}
+
+void del_front()
+{
+  node *temp=first;
+  first=first->next;
+  first->prev=NULL;
+  free(temp);
+}
+
+void del_last()
+{
+   node *temp=first,*temp1;
+   while(temp!=last)
+   {
+      temp1=temp;
+      temp=temp->next;
+   }
+   last=temp1;
+   last->next=NULL;
+   free(temp);
+}
+
+void del_mid()
+{
+  int key;
+  printf("enter the key elements\n");
+  scanf("%d",&key);
+  node *temp=first,*temp1;
+  while(temp->data !=key)
+  {
+    temp1=temp;
+    temp=temp->next;
+  }
+  temp1->next=temp->next;
+  temp->next->prev=temp1;
+  free(temp);
+}   
+
+int main()
+{
+    printf("===========> inserted Node Are <=========== \n");
+    insert_node(10);
+    insert_node(20);
+    insert_node(30);
+    display();
+    
+    printf("============== insert_front ========== \n");
+    insert_front(5);
+    display();
+    
+    printf("============== insert_last ========== \n");
+    insert_last(40);
+    display();
+    
+    printf("============== insert_mid ========== \n");
+    insert_mid(25);
+    display();
+    
+    printf("============== del_front ========== \n");
+    del_front();
+    display();
+    
+    printf("============== del_last ========== \n");
+    del_last();
+    display();
+    
+    printf("============== del_mid ========== \n");
+    del_mid();
+    display();
+    
+    printf("============== insert_mid ========== \n");
+    insert_mid(15);
+    display();
+    
+    return 0;
+}
+
+5. 
+
+#include<stdio.h>
+#include<stdlib.h>
+struct cs11
+{
+    int data;
+    struct cs11 *next;
+};
+typedef struct cs11 node;
+node *first=NULL,*last=NULL;
+void insert_node(int ele)
+{
+    node *new=(node *)malloc(sizeof(node));
+    if(first == NULL)
+    {
+        new->data=ele;
+        new->next=new;
+        first=last=new;
+    }
+    else
+    {
+        new->data=ele;
+        new->next=first;
+        last->next=new;
+        last=new;
+    }
+}
+void display()
+{
+    node *temp=first;
+    do
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+    while(temp !=first);
+}
+void insert_front(int ele)
+{
+    node *new=(node *)malloc(sizeof(node));
+    new->data=ele;
+    new->next=first;
+    last->next=new;
+    first=new;
+}
+void insert_last(int ele)
+{
+    node *new=(node*)malloc(sizeof(node));
+    new->data=ele;
+    new->next=first;
+    last->next=new;
+    last=new;
+}
+void insert_mid(int ele)
+{ 
+   int key;
+   printf("enter a key element:\n");
+   scanf("%d",&key);
+   node *temp=first,*temp1;
+   while(temp->data!=key)
+   {
+        temp1=temp;
+        temp=temp->next;
+   }
+   node *new=(node*)malloc(sizeof(node));
+   new->data=ele;
+   new->next=temp;
+   temp1->next=new;
+}
+
+void del_front()
+{
+    node *temp=first;
+    first=first->next;
+    last->next=first;
+    free(temp);
+}
+
+void del_last()
+{
+    node *temp=first,*temp1;
+    while(temp !=last)
+    {
+        temp1=temp;
+        temp=temp->next;
+    }
+    last=temp1;
+    temp1->next=first;
+    free(temp);
+}
+
+void del_mid()
+{
+  int key;
+  printf("enter the key elements\n");
+  scanf("%d",&key);
+  node *temp=first,*temp1;
+  while(temp->data !=key)
+  {
+    temp1=temp;
+    temp=temp->next;
+  }
+  temp1->next=temp->next;
+  free(temp);
+} 
+
+int main()
+{
+    printf("=========== insert_node ======= \n");
+    insert_node(10);
+    insert_node(20);
+    insert_node(30);
+    display();
+    printf("============== insert_front ========== \n");
+    insert_front(5);
+    display();
+    printf("============== insert_last ========== \n");
+    insert_last(40);
+    display();
+    printf("============== insert_mid ========== \n");
+    insert_mid(25);
+    display();
+    printf("============== del_front ========== \n");
+    del_front();
+    display();
+    printf("============== del_last ========== \n");
+    del_last();
+    display();
+    printf("============== del_mid ========== \n");
+    del_mid();
+    display();
+    return 0;
+}
+
+6. 
+
+#include<stdio.h>
+#include<stdlib.h>
+struct dcll
+{
+    int data;
+    struct dcll *next;
+    struct dcll *prev;
+};
+typedef struct dcll node;
+node *first=NULL,*last=NULL;
+void insert_node(int ele)
+{
+    node *new=(node *)malloc(sizeof(node));
+    if(first == NULL)
+    {
+        new->data=ele;
+        new->next=new;
+        new->prev=new;
+        first=last=new;
+    }
+    else
+    {
+        new->data=ele;
+        new->next=first;
+        new->prev=last;
+        last->next=new;
+        first->prev=new;
+        last=new;
+    }
+}
+void display()
+{
+    node *temp=first;
+    do
+    {
+        printf("%d\n",temp->data);
+        temp=temp->next;
+    }
+    while(temp !=first);
+}
+void insert_front(int ele)
+{
+    node *new=(node *)malloc(sizeof(node));
+    new->data=ele;
+    new->next=first;
+    new->prev=last;
+    last->next=new;
+    first=new;
+}
+
+void insert_last(int ele)
+{
+  node *new=(node *)malloc(sizeof(node));
+  new->data=ele;
+  new->next=first;
+  new->prev=last;
+  last->next=new;
+  last=new;
+}
+void insert_mid(int ele)
+{
+  int key;
+  printf("enter a key element:");
+  scanf("%d",&key);
+  node *temp=first,*temp1;
+  while(temp->data!=key)
+  {
+     temp1=temp;
+     temp=temp->next;
+  }
+  node *new=(node *)malloc(sizeof(node));
+  new->data=ele;
+  new->next=temp;
+  new->prev=temp1;
+  temp1->next=new;
+}
+
+void del_front()
+{
+    node *temp=first;
+    first=first->next;
+    last->next=first;
+    free(temp);
+}
+
+int main()
+{
+    printf("=========== insert_node ======= \n");
+    insert_node(10);
+    insert_node(20);
+    insert_node(30);
+    display();
+    printf("============== insert_front ========== \n");
+    insert_front(5);
+    display();
+    printf("============== insert_last ========== \n");
+    insert_last(40);
+    display();
+    printf("============== insert_mid ========== \n");
+    insert_mid(25);
+    display();
+    printf("============== del_front ========== \n");
+    del_front();
+    display();
+ /*   printf("============== del_last ========== \n");
+    del_last();
+    display();
+    printf("============== del_mid ========== \n");
+    del_mid();
+    display(); */
+    return 0;
+}
+
+7. reverse linked list.
+
+#include<stdio.h>
+#include<stdlib.h>
+struct reverse
+{
+    int data;
+    struct reverse *next;
+    struct reverse *prev;
+};
+typedef struct reverse node;
+
+node* create_node(int ele)
+{
+    node *new=(node *)malloc(sizeof(node));
+    new->data=ele;
+    new->next=NULL;
+    new->prev=NULL;
+    return new;
+}
+
+void append(node** head_ref,int ele)
+{
+   node* new = create_node(ele);
+   node* last = *head_ref;
+   
+   if(*head_ref == NULL)
+   {
+      *head_ref = new;
+      return;
+   }
+   while(last->next != NULL)
+   {
+     last = last->next;
+   }
+   last->next = new;
+   new->prev = last;
+}
+void rev(node** head_ref)
+{
+  node* temp = NULL;
+  node* current = *head_ref;
+  while(current!=NULL)
+  {
+    temp = current->prev;
+    current->prev=current->next;
+    current->next=temp;
+    current=current->prev;
+  }
+  if(temp !=NULL)
+  {
+     *head_ref = temp->prev;
+  }
+}
+ 
+void print_list(node* temp) 
+{
+  while(temp != NULL)
+  {
+   printf("%d ", temp->data);
+   temp = temp->next;
+  }
+  printf("\n");
+}
+
+int main()
+{
+    node* head = NULL;
+    append(&head,1);
+    append(&head,2);
+    append(&head,3);
+    append(&head,4);
+    append(&head,5);
+    printf("original list: ");
+    print_list(head);
+    rev(&head);
+    printf("reversed list: ");
+    print_list(head);
+    return 0;
+}
+           or
+#include <stdio.h>
+#include <stdlib.h>
+
+struct dll
+{
+    int data;
+    struct dll *prev; // self-referential
+    struct dll *next; // self-referential
+};
+
+typedef struct dll node;
+
+node *first = NULL, *last = NULL;
+
+void insert_node(int ele) 
+{
+    node *new = (node *)malloc(sizeof(node));
+    if (first == NULL) 
+    {
+        new->data = ele;
+        new->next = NULL;
+        new->prev = NULL;
+        first = last = new;
+    } 
+    else 
+    {
+        new->data = ele;
+        new->next = NULL;
+        last->next = new;
+        new->prev = last;
+        last = new;
+    }
+}
+
+void display() 
+{
+    node *temp = first;
+    while (temp != NULL) 
+    {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+}
+
+void reverse() 
+{
+    node *temp = NULL;
+    node *current = first;
+    while (current != NULL) 
+    {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
+    }
+    if (temp != NULL) 
+    {
+        first = temp->prev;
+    }
+}
+
+int main() 
+{
+    printf("===========> Inserted Nodes Are <=========== \n");
+    insert_node(10);
+    insert_node(20);
+    insert_node(30);
+    display();
+
+    printf("===========> Reversed List <=========== \n");
+    reverse();
+    display();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
