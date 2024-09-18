@@ -1,0 +1,441 @@
+18/06/2024
+
+ 1. Features of C Language.
+  	1. middle level language
+  	2. structure oriented
+  	3. portable
+  	4. robust
+  	5. modularity
+  	
+ 2. Applications of c Language.
+ 	1. DBMS applications
+ 	2. create linux drivers
+ 	3. create OS at backend on C and C++
+ 	4. compilers are designed
+ 	5. clouds,embedded
+ 	6. Development of video games.
+ 	7. Graphical interfaces
+ 	
+ 3. Do we use two same header files twice in code?
+	-> Yes,we can use,if we use  header file twice it doesnot give any error but it takes more time to compile.
+ 	
+ 4. Explain main is a predefine or user define ?
+ 	-> main() is userdefined as well as predefined. body of the function is defined by the programmer,whose prototype is predefined by 
+ 	   the compiler.
+ 	
+ 5. What is datatype? and types. 
+ 	-> It is to mention the type, size, memory to be allocated for a variable.
+        	1. primitive - predefined (int- 2 or 4 bytes, char- 1 byte, float- 4 bytes, double- 8 bytes)- 
+            	2. non- primitive - user-defined (array, string, structure, unions, typedef, enum)
+
+ 6. what is default datatype in c? 
+ 	-> int is default datatype.
+
+ 7. What are tokens and their classifications?
+	-> Tokens are the smallest individual units in a c program that the compiler recognizes and processes.
+	-> It is fundamental building blocks that make up a c program.
+        -> 7 tokens:
+                1. identifier
+                2. keywords
+                3. constants 
+                4. strings
+                5. special symbols
+                6. operators 
+                7. Comments
+         
+ 8. What are identifiers and its rules?
+	-> Identifier- Identifier are name given to various program elements such as variable, functions, arrays & structures.
+	-> Rules- 1. It can starts with letter or underscore(_),.
+                  2. It can include letters, digits and underscore.
+                  3. Case-sensitive
+                  4. No special character or no spaces allowed.
+                  
+ 9. What is a variable?
+	-> Variable is name given to a storage location that holds data or a value.
+	
+10. What is the difference b/w declaration and definitions of a variable? (***)
+
+11. what is preprocessor. 
+	Preprocessor is a program that is invoke by the complier, it  preprocess  the source code and include all the hearder file which starts
+with hash (# - preprocessor directive ),remove the commented lines and substitute header files, macro substitution and conditional inclusion.
+	
+12. What is compiler.
+	A compiler is a software tool that translates source code written in a any programming language into machine code that can be executed    directly by a computers CPU. It performs several tasks, including error detection and prevention, flow control, syntax analysis, type checking,  and optimization.
+
+13. what is Modularity.
+	Modularity is used to  breaking the large program into smaller, independent modules or sub-programs.
+	
+19/06/2024
+
+14. What is Modifiers and its types.
+	-> Modifiers is used to modify the size of data type
+	-> There are four types of modifiers.
+    	      1. short-occupies 4 bytes of memory,applicable for integer dat type.
+    	      2. long-occupies 8 bytes of memory based on magnitude of the system,applicable for integer and double data types.
+    	      3. signed-applicable for int and char integrals.
+    	      4. unsigned-applicable for int and char integrals.
+    	
+15. What is sizeof().
+	-> It is an operator used to find the size of the data type or a variables. o/p interms of bytes.
+	-> Size cannot be negative. 
+	-> format specifier is %u.
+	
+16. What is an operator and its types.
+	-> Operators are the symbols that tells the compiler to perform certain mathematical and logical maipulations.
+	-> Types:
+	       1. Unary
+	       2. Binary
+	       3. Ternary
+	
+17. what is the difference b\w a=a+1 and a+1.
+	-> a+1 means that variable a is added with 1.
+	-> a=a+1 means that variable a is added with 1 and then its value is updated.
+	
+18. Mentions few pre-defined functions in c.
+	1. printf()- Prints formatted output to the standard output.
+	2. sacnf() - Reads formatted input From the standard input.
+	3. strlen()- It is used to find the length of the string.
+        4. strcpy()- It is used to copy the two strings.
+        5. strcmp()- It is used to compare the two strings.
+        6. strcat()- It is used to adding  the two strings.
+	7. sqrt()  - Computes the square root of a number
+	8. abs()   - Calculate the absolute value of a number.
+	
+19. what is fmod()? where it is used.
+	fmod is a functions, that provided by the <math.h> library, it is used to compute the floating-point remainder of the division operation.
+	
+20/06/2024
+
+20. what is the range of datatypes in c?
+		Type			      Storage Size			 Value Range
+		
+	Int (or signed int)			2 bytes				-32,768 to 32,767
+	unsigned int				2 bytes				  0 to 65,535
+	Short int(or signed short int)		2 bytes				-32,768 to 32,767
+	Long(or singed short int)		4 bytes				-2,147,483,648 to 2,147,483,647
+	unsigned long				4 bytes				  0 to 4,294,967,295
+	float					4 bytes				  1.2E-38 to 3.4E+38 (6 decimal places)
+	double					8 bytes				  2.3E-308 to 1.7E+308 (15 decimal places)
+	Long double				10 bytes			  3.4E-4932 to 1.1E+4932 (19 decimal places)
+	char(or signed char)			1 byte				-128 to 127
+	unsigned char				1 byte				  0 to 255
+	
+21. write about , and ; operators?
+      -> comma(,)- It is a binary operator that evaluates its operands from left to right and returns the value of the right most operand.
+      -> Semicolon(;)- It is a statement terminator. It is used to separate individual statement in aprogram, indicating the end of a statement.
+	
+22. what is type conversion or typecasting and its types?
+	-> Type Converstions or Type Casting- Converting one type of data into another type of data.
+        	1. Implicit Type converstions- Compiler convert the one type of data to another type.
+        	2. Explicit Type converstions- programmer explicit convert the type of data that user required.
+	
+23. what is precedence and associativity? Mention the prioritized operator.
+	-> precedence- it detemines the order in which operators are evaluated in an expression.
+	-> associativity- it define the order in which operators of the same precedence are evaluated.
+
+24. What is return type in c?
+	-> return type in c refers to the data type of the value that a function returns.
+
+21/06/2024
+
+25. what is instructions and its type?
+	-> Instrctions are give to a compiler by a program to perform certain tasks or actions.
+	-> Type - 1. type decleration instructions
+                  2. i/p o/p instructions
+                  3. arithmetic instructions
+                  4. control instructions
+       
+24/06/2024
+
+26. what is the difference b/w the while and do while.
+	-> In while loop,it checks condition first and then goes to body of the loop.It is also called as entry test loop.
+	-> In do while loop,it checks the condition after updation.It is also called as exit test loop. 
+	
+27. when and where we use for loop and while loop.
+	-> we use for loop,when we know the number of iterations.
+	-> when we dont know number of iterations we go for while loop
+	
+28. what is the differnce b/w run time error and compiler time error.
+	-> Compile time(Syntax error) error generally refers to the errors that corresponds to syntax.
+	-> Runtime error(logical error) refers to the error that we encounter during the code execution.
+	
+29. if u want to increase the size of an integer which modifier is used.
+	->long 
+	
+26/06/2024
+
+30. when do we go for int and when do we go for unsigned int.
+	-> int can store both positive and negative values.
+	-> Unsigned int can only store non negative value.
+	-> If we want only positive values we use unsigned int otherwise we go with int .
+	 
+31. what is the range of int and unsigned int.
+	-> The range of int          : 2,147,483,648 to 2,147,483,647 or -2^31 to (2^31)-1
+	-> The range of unsigned int : 0 to 4,294,967,295             or   0   to (2^32)-1
+	
+32. what is number system. How to convert decimal to binary , binary to decimal and decimal to hexa-decimal.
+	-> Number system: A number system is a writing system for expressing number. It defines a set of symbols and rules for representing and manipulating numbers.
+
+33. How to toggle, set,reset and clear a bit of both LSB and nth bit(MSB).
+	->set:
+		1.LSB:a=a|1     2.FOR NTH BIT:a=a|(1<<pos)
+	->clear:
+		1.LSB:a=a&~1    2.FOR NTH BIT:a=a&(~(1<<pos-1))
+	->toggle
+		1.LSB:a=a^1     2.FOR NTH BIT:a=a^(1<<pos)
+		
+34. what is the difference b/w call by value and call by reference(address). or diff blw pass by value and pass by address.
+	-> call by value or pass by value: Passing the value from actual argument which is copied inside formal argument any modifications made to the formal argument will not reflect on the actual arguments because these variables allocates different memory and they lie under two different functions.
+        -> call by reference or pass by reference: Passing the address from actual argument to the pointer in the formal argument any modifications done to pointer variable will be reflected on the actual argument. so any changes made to the pointer is directly reflected to actual argument.
+
+35. what is the difference b/w array, structure and linked list.
+
+36. what are the advantages of functions.
+	->reusability
+	->readability
+	->easy to debug
+	->portable
+	
+37. what are the different categories of functions.
+	->Pre-defined functions (inbuilt functions)
+	->User defined functions
+	
+38. what is caller function and called function.
+	->caller function has actual arguments
+	->called function has formal arguments
+	
+39. can we call a function inside another function.
+	-> yes we can call a function inside other function
+	
+40. can we define a function inside another function.
+	-> No,we cannot define a function from another function because nested function is not supported in c.
+	
+41. what is stack frame.
+	-> Stack frame is actually a buffer memory that is an element of the program stack and has the data of called function.
+	
+42. what is the internal working process of stack frame.
+
+43. is stack segment extended upwards or downwards.
+ 
+27/06/2024
+
+44. What is better compartabily a function or macro?
+
+45. Wha is function overhead?
+	-> function overhead is a process of calling the functions, control transfers to function defination than stack frame is created then in stack frame did the operations after completions of operation then control returns back to the function. 
+	
+46. which is better  function overhead or function expansion? 
+
+47. Explain the stages of compilation. or what does the c program undergo during compilaiton. or expalin compilation model.
+	-> when the compilations starts, compiler looks into the preprocessor, Preprocessor is a program that is invoke by the complier, it  preprocess  the source code and include all the hearder file which starts with hash (# - preprocessor directive ), remove the commented lines   
+and Preprocessor generates the transistion unit and it pass that output to the complier and complier generaters the assembly code, assembly code pass to the assembler, assembler generates the object code that generated object code pass to link editor. Link editor can links all the definations and user defined function and it generates exceutable code ( the name of exceutable code is ./a. out).
+
+28/06/2024
+
+48. What is the difference between multiline macro and single line macro?
+	-> single line macro: It can define only one line of code.
+	-> In multi line macro we define any logic like function but every line ends with blackslash (\) because blackslash shows there is 
+	   a nextline in macro but for the last line we donot use blackslash.
+	     
+49. What is diffrernce between arguments and non arguments macros.
+	-> argumented - Free to pass 'n' number of arguments.
+	-> Non - Argumented - we pass olny static values. 
+
+50. How do you indicate multiple macro.
+	-> It indicates with blackslash (\).
+	
+51. Does macro allocate memory.
+	-> No, macro does not allocate memory.
+	
+52. can i have a macro with not macro body?
+	-> Yes, it is possible to define macro without macro body but without any macro body it is simply a symbolic nae that preprocessor 
+	   replace with a constant value.
+	   
+53. can macro redefine twice.
+	-> Yes, it is possible to redefine a macro twice, but it shows warning and updates last value.
+
+1/07/2024
+
+54. explain memory layout? different segment of memory layout?
+        -> memory layout- To represent the typical memory.
+                1. Text segment or code segment- hold the exceutable instructions of the program.
+                2. Data segment- 1. Unintialize - Reserves space for Unintialized global and static variable and also intialized with zero.
+                                 2. intialized- stores global and static variable with insialized values. 
+                                                              
+                3. Heap segment- Dynamic memory allocation during program exection.
+                4. stack segment- to store the local variables and it is last in frist out(lifo).
+                
+55. what is the stroge class and its types?
+	-> storage classes specify the scope and life time of variables.
+        	1. Automatic- it helps to create a temparary variable to keep the data for limited time.
+                2. static- either globel or local variable, they are alive throughout the program.
+                          
+56. what are the stroge class specifiers.
+	-> stroge class specifiers are four types: 
+		1. auto
+        	2. register
+        	3. static
+        	4. extern
+         
+57. what is the difference b/w local static variable and global static variable.
+	-> memory layout- To represent the typical memory.
+                1. Text segment or code segment- hold the exceutable instructions of the program.
+                2. Data segment- 1. Unintialize - Reserves space for Unintialized global and static variable and also intialized with zero.
+                                 2. intialized- stores global and static variable with insialized values. 
+                                                              
+                3. Heap segment- Dynamic memory allocation during program exection.
+                4. stack segment- to store the local variables and it is last in frist out(lifo).
+               
+58. what are the different type of linkage and explain with programming example.
+	-> There are three types of Linkages:
+		1. Internal linkage- It is the process of global variable with in the file can be acressible and outside the file to achive 
+                                     internal linkage we can apply statick to our global variable.
+        	2. External linkage- The process of accessing a global variable from one file to another file using exten keyword.
+        	3. None     linkage- It is a process where we do not use internal and external linages. A local variable within the block which can 
+                                     only be accessible with in the block.
+                                     
+59. what is the static function and where it is used.
+
+2/07/2024
+
+60. Mention declerative statements in c which does to allocated memory.
+61. Does c contain array bound check?
+62. what is array bound check in c.
+
+
+4/07/2024
+
+63. what is the difference b/w strlen() and size of operator ?
+	-> strlen()- It is used to find the length of the string. 
+	-> sizeof()- It is used to find the size of the datatype.
+
+8/07/2024
+
+64. what is pointer airthmetic and what are the valid and invalid operations.
+	-> Pointer Arithmetic is the set of valid arithmetic operations that can be performed on pointers. 
+        	-> Valid Operations:   1. increment
+                            	       2. decrement
+                           	       3. add integer to a pointer
+                                       4. sub integer from a pointer
+                                       5. sub two pointers
+                          
+      		-> Invalid Operations: 1. adding two pointer
+                                       2. multipling an integer with pointer.
+                             	       3. multipling two pointers
+                                       4. dividing an interger with pointer
+                                       5. dividing two pointer
+
+11/07/2024
+
+65. Difference b/w malloc and calloc.
+66. Difference b/w static memory allocation and dynamic memory allocation.
+67. Difference b/w pointer and array.
+68. Difference b/w array of a pointer & pointer to an array.
+69. What is wild pointer, null pointer, void pointer and dangling pointer.
+
+70. what are qualifiers and explain types of qualifiers.
+	-> Qualifer- It can be used to change a data type's behavior in the C programming language.
+        		1. const   - If any variable is declared as a const in the code and is initialized with a value, its value cannot be 
+        		       	     furtherly modified in any part of the code. It results in a compile-time error if the programmer attempts 
+        		       	     to modify the value of such variables, which are declared const
+             		2. Volatile- The volatile is used to indicate to the compiler that a variable's value may change unexpectedly.
+             		
+71. what is return type for DMA function.
+	-> Void is the return type for DMA functions.
+	 
+72. Difference b/w memory leak and memory corruption.
+	-> Memory Leak      - When the heap segment is full or there is no space in the heap segment, the loss of data that happens in the 
+	                      heap segment is called memory leakage.
+	-> Memory Corruption- Accersing memory more than alocating memory.
+	
+73. Why exit() is used.
+	-> It is used to exit or terminate from the program.
+	 
+74. Difference b/w exit(), return, and break.
+	-> exit()- used to terminate from the program.
+	-> return- control goes back to the function where the function is called.
+	-> break - It breaks the loop or switch case.
+	 
+75. explain pointer and constant together.
+	-> Pointer and constant-
+      		1. pointer to a constant                     - syntax: datatype const *pointer_name;
+      		2. constant pointer                          - syntax: datatype *const pointer_name;
+      		3. pointer to a constant and constant pointer- syntax: const datatype *const pointer_name;
+      		
+76. what happen if we use free() two times.
+        -> Double free cause corruption error.
+        
+	#include<stdio.h>
+	#include<stdlib.h>
+	int main()
+	{
+	  int *ptr = (int *)malloc(sizeof(int));
+	  if(ptr == NULL)
+	  {
+	    printf("Heap is full\n");
+	  }
+	  *ptr=78;
+	  printf("value: %d\n",*ptr);
+	  free(ptr);
+	  free(ptr);
+	  return 0;
+	}
+
+	revanth@revanth-inspiron:~/Desktop/c$ ./res
+	address: 0x561bf2f392a0
+	value: 78
+ ----->	free(): double free detected in tcache 2
+	Aborted (core dumped)
+
+77. what is alternate for free().
+	-> pointer_name =  realloc(pointer_name, 0);
+ 
+22/07/2024
+
+78. what is structure padding? explain the entire process of structure padding.
+79. what are the vaild operation that can be performed the structure.
+80. how to avoid structure padding.
+81. Difference b/w structure and union.
+82. what are the real time applications of structure, union, typedef and enum.
+    
+	1. Structure application:
+		-> structure database system
+		-> Bank account Management 
+		-> Employee management system
+		-> contact management system 
+		-> Vehicle information system
+		-> Dynamic Employer Management system
+		-> Singly Linked list 
+		-> dynamic array of structure.
+	2. Union applications:
+		-> protocol data units in network
+		-> sensor data interpretation
+	3. typedef applications:
+		-> 
+	4. enum applications:
+		-> any time you need to represent a fixed set of constants.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
