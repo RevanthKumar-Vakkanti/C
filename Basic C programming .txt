@@ -3310,7 +3310,76 @@ int main()
   return 0;
 }
 
- 
+//-------------------------------------------------------------------------- 
+=> multiply two matrixs
+
+#include<stdio.h>
+#define row 2
+#define col 2
+
+int main()
+{
+  int mat1[row][col],i,j;
+  int mat2[row][col];
+  printf("enter a matrix1 elements:\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      scanf("%d",&mat1[i][j]);
+    }
+  } 
+  printf("enter a matrix2 elements:\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      scanf("%d",&mat2[i][j]);
+    }
+  } 
+  printf("entered matrix1 elements are:\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      printf("%d\t",mat1[i][j]);
+    }
+    printf("\n");
+  } 
+  printf("entered matrix2 elements are:\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      printf("%d\t",mat2[i][j]);
+    }
+    printf("\n");
+  } 
+  int mul[row][col];
+
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      mul[i][j]=0;
+      for(int k=0;k<col;k++)
+      {
+        mul[i][j] = mul[i][j]+mat1[i][k]*mat2[k][j];
+      }
+    }
+  }
+  
+  printf("resultant matrxi are:\n");
+  for(i=0;i<row;i++)
+  {
+    for(j=0;j<col;j++)
+    {
+      printf("%d\t",mul[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
        
        
        
