@@ -1,0 +1,140 @@
+1. count a no.of digits, alphabets, special characters, spaces using flies.
+ 
+#include <stdio.h>
+#include<stdlib.h>
+int main() 
+{
+    char str[256];
+    int i, digits = 0, alphabets = 0, special_characters = 0, spaces = 0;
+    FILE *co = fopen("count", "r+");
+    if (co == NULL) 
+    {
+        printf("file not found\n");
+        exit(0);
+    }
+    fgets(str, sizeof(str), co);
+    for (i = 0; str[i] != '\0'; i++) 
+    {
+        if ((str[i] >= '0' && str[i] <= '9')) 
+        {
+            digits++;
+        } 
+        else if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')) 
+        {
+            alphabets++;
+        } 
+        else if (str[i] == ' ') 
+        {
+            spaces++;
+        } 
+        else if (str[i] != '\n')
+        {
+            special_characters++;
+        }
+    }
+    printf("No. of digits: %d\n", digits);
+    printf("No. of alphabets: %d\n", alphabets);
+    printf("No. of spaces: %d\n", spaces);
+    printf("No. of special characters: %d\n", special_characters);
+    fclose(co);
+    return 0;
+}
+
+2. sorting a string using flies.
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main() 
+{
+    char str[100],temp;
+    FILE *co = fopen("count", "r+");
+    if (co == NULL) 
+    {
+        printf("file not found\n");
+        exit(0);
+    }
+
+    fgets(str, sizeof(str), co);
+    int len = strlen(str);
+    for(int i=0;i<len-1;i++)
+    {
+      for(int j=i+1;j<len;j++)
+      {
+        if(str[i]>str[j])
+        {  
+          temp=str[i];
+          str[i]=str[j];
+          str[j]=temp;
+        }
+      }
+    }
+    printf("%s\n",str);
+    fclose(co);
+    return 0;
+}
+
+3. reverse string using flies
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main() 
+{
+    char str[100],temp;
+    FILE *re = fopen("reverse", "r+");
+    if (re == NULL) 
+    {
+        printf("file not found\n");
+        exit(0);
+    }
+
+    fgets(str, sizeof(str), re);
+    int len = strlen(str);
+    for( int i=0;i<len/2;i++)
+    {
+        temp=str[i];
+        str[i]=str[len-1-i];
+        str[len-1-i]=temp;
+    }
+    printf("%s\n",str);
+    fclose(re);
+    return 0;
+}
+
+4. upper to lower and lower to upper
+
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main() 
+{
+    char str[100],temp;
+    FILE *fp = fopen("up_lo", "r+");
+    if (fp == NULL) 
+    {
+        printf("file not found\n");
+        exit(0);
+    }
+
+    fgets(str, sizeof(str), fp);
+    int len = strlen(str);    
+    for ( int i = 0; i <= len; i++)  
+    {  
+        if (str[i] >= 65 && str[i] <= 90)
+        { 
+           str[i] = str[i] + 32; 
+        }
+        else if (str[i] >= 97 && str[i] <= 122)
+        {
+           str[i] = str[i] - 32;
+        }
+    }  
+    fputs(str,stdout);
+    printf("\n");
+    fclose(fp);
+    return 0;
+}
+
+
+
